@@ -1,4 +1,4 @@
-body {
+.form-container{
     font-family: Arial, sans-serif;
     background-color: #f9f9f9;
 }
@@ -7,8 +7,6 @@ body {
     width: 60%;
     margin: 50px auto;
     padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
