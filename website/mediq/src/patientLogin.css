@@ -2,8 +2,6 @@
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
     box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
     background-color: #1A1A1A;
     color: #fff;
@@ -63,3 +61,14 @@
 .P-login .submit-btn:hover {
     background-color: #D4AF37;
 }
+
+.P-login .checkbox-group {
+    display: flex;
+    align-items: center; /* Aligns items vertically in the center */
+    gap: 10px; /* Optional: Adds space between the checkboxes */
+  }
+  
+.P-login .checkbox-label {
+    white-space: nowrap; /* Prevents the label from wrapping */
+  }
+  

@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
 import './App.css';
-import HomePage from './homepage.jsx';
 import HospitalLogin from './hospitallogin.jsx';
 import Patientlogin from './patientlogin.jsx';
 
