@@ -20,19 +20,21 @@ const Button = ({ onClick, children, variant = 'primary' }) => {
   );
 };
 
-// Setting up requirements for Input from user
-const Input = ({ label, type, required }) => (
+// Input component for capturing user input
+const Input = ({ label, type, required, value, onChange }) => (
   <div className="mb-4">
     <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
     <input
       type={type}
       required={required}
+      value={value}
+      onChange={onChange}
       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
     />
   </div>
 );
 
-// For letting user select the choice of patient or hospital staff
+// Component for selecting user type
 const UserTypeSelection = ({ onSelect }) => (
   <div className="text-center">
     <h2 className="text-2xl font-bold mb-6">Are you a:</h2>
@@ -49,33 +51,40 @@ const UserTypeSelection = ({ onSelect }) => (
   </div>
 );
 
-// For diplaying registration form
-const RegistrationForm = ({ userType, onBack, onToggle, onSuccess }) => (
-  <div>
-    <h2 className="text-2xl font-bold mb-6">
-      {userType === 'patient' ? 'Patient Registration' : 'Hospital Staff Registration'}
-    </h2>
-    <form onSubmit={onSuccess} className="space-y-4">
-      <Input label="Name" type="text" required />
-      <Input label="Email ID" type="email" required />
-      <Input label="Mobile Number" type="tel" required />
-      <Input label="Password" type="password" required />
-      <Button type="submit">Register</Button>
-    </form>
-    <div className="mt-4 space-x-4">
-      <Button onClick={onBack} variant="secondary">
-        <ArrowLeft className="inline-block mr-2" size={16} />
-        Back
-      </Button>
-      <Button onClick={onToggle} variant="secondary">
-        <LogIn className="inline-block mr-2" size={16} />
-        Already have an account? Login
-      </Button>
-    </div>
-  </div>
-);
+// Registration form component
+const RegistrationForm = ({ userType, onBack, onToggle, onSuccess }) => {
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [mobileNumber, setMobileNumber] = useState('');
+  const [password, setPassword] = useState('');
 
-// For displaying login form
+  return (
+    <div>
+      <h2 className="text-2xl font-bold mb-6">
+        {userType === 'patient' ? 'Patient Registration' : 'Hospital Staff Registration'}
+      </h2>
+      <form onSubmit={(e) => onSuccess(e, { username, email, mobileNumber, password })} className="space-y-4">
+        <Input label="Username" type="text" required value={username} onChange={(e) => setUsername(e.target.value)} />
+        <Input label="Email ID" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
+        <Input label="Mobile Number" type="tel" required value={mobileNumber} onChange={(e) => setMobileNumber(e.target.value)} />
+        <Input label="Password" type="password" required value={password} onChange={(e) => setPassword(e.target.value)} />
+        <Button type="submit">Register</Button>
+      </form>
+      <div className="mt-4 space-x-4">
+        <Button onClick={onBack} variant="secondary">
+          <ArrowLeft className="inline-block mr-2" size={16} />
+          Back
+        </Button>
+        <Button onClick={onToggle} variant="secondary">
+          <LogIn className="inline-block mr-2" size={16} />
+          Already have an account? Login
+        </Button>
+      </div>
+    </div>
+  );
+};
+
+// Login form component
 const LoginForm = ({ userType, onBack, onToggle }) => (
   <div>
     <h2 className="text-2xl font-bold mb-6">
@@ -99,7 +108,7 @@ const LoginForm = ({ userType, onBack, onToggle }) => (
   </div>
 );
 
-// If registration is successfull, displaying a success message and redirecting to login form
+// Success message component
 const SuccessMessage = ({ onBack }) => (
   <div className="text-center">
     <h2 className="text-2xl font-bold mb-4">Welcome to the Hospital Appointment System!</h2>
@@ -109,11 +118,12 @@ const SuccessMessage = ({ onBack }) => (
   </div>
 );
 
-// Main component for the above functionality
+// Main component
 export const Login = () => {
   const [isRegistering, setIsRegistering] = useState(false);
   const [userType, setUserType] = useState(null);
   const [isRegistered, setIsRegistered] = useState(false);
+  const [registrations, setRegistrations] = useState([]);  // Array to store user details
 
   const handleUserTypeSelection = (type) => {
     setUserType(type);
@@ -130,10 +140,19 @@ export const Login = () => {
     setIsRegistering(!isRegistering);
   };
 
-  const handleRegistrationSuccess = (event) => {
+  const handleRegistrationSuccess = (event, userData) => {
     event.preventDefault();
+    
+    // Update the state and use a callback to check the updated array
+    setRegistrations((prevRegistrations) => {
+      const updatedRegistrations = [...prevRegistrations, userData];
+      console.log('Updated Registrations:', updatedRegistrations);  // Log the updated array
+      return updatedRegistrations;
+    });
+    
     setIsRegistered(true);
   };
+  
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
