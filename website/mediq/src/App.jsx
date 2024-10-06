@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
 import './App.css';
 import HomePage from './homepage.jsx';
-import Login from './login.jsx';
+import HospitalLogin from './hospitallogin.jsx';
 
 // Create a separate component for the main page content
 const MainPage = () => {
@@ -17,7 +17,7 @@ const MainPage = () => {
       <h2>Are you a</h2>
       <div className="button-container">
         <button onClick={() => navigate('/homepage')}>User/Patient</button>
-        <button onClick={() => navigate('/login')}>Hospital</button>
+        <button onClick={() => navigate('/hospitallogin')}>Hospital</button>
       </div>
     </div>
   );
@@ -30,7 +30,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/homepage" element={<HomePage />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/hospitallogin" element={<HospitalLogin />} />
       </Routes>
     </Router>
   );
