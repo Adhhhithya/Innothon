@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { UserCircle, Hospital, ArrowLeft, LogIn, UserPlus } from 'lucide-react';
+import './login.css'
 
 // Button setup function
 const Button = ({ onClick, children, variant = 'primary' }) => {
