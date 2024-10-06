@@ -1,5 +1,5 @@
 .P-login {
-    max-width: 400px;
+    max-width: 600px;
     margin: 0 auto;
     padding: 20px;
     border: 1px solid #ccc;
@@ -38,17 +38,16 @@
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
-    
 }
 
 .P-login .checkbox-group label {
-    position: relative;
+    display: flex;
     align-items: center;
 }
 
-/* .P-login .checkbox-group input {
+.P-login .checkbox-group input {
     margin-right: 8px;
-} */
+}
 
 .P-login .submit-btn {
     width: 100%;
