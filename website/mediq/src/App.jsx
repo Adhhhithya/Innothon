@@ -16,10 +16,8 @@ const MainPage = () => {
       <h1>Welcome to MediQ</h1>
       <h2>Are you a</h2>
       <div className="button-container">
-        <button onClick={() => navigate('/homepage')}>User/Patient</button>
         <button onClick={() => navigate('/hospitallogin')}>Hospital</button>
         <button onClick={() => navigate('/patientlogin')}>User/Patient</button>
-        <button onClick={() => navigate('/homepage')}>Hospital</button>
       </div>
     </div>
   );
@@ -31,7 +29,6 @@ const App = () => {
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/patientlogin" element={<Patientlogin />} />
-        <Route path="/homepage" element={<HomePage />} />
         <Route path="/hospitallogin" element={<HospitalLogin />} />
       </Routes>
     </Router>
