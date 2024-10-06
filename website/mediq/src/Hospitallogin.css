@@ -1,9 +1,6 @@
-.form-container{
+body {
     font-family: Arial, sans-serif;
     background-color: #f9f9f9;
-}
-
-.form-container {
     width: 60%;
     margin: 50px auto;
     padding: 20px;
@@ -11,53 +8,53 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.logo {
+.form-container .logo {
     font-size: 24px;
     font-weight: bold;
     text-align: left;
     margin-bottom: 20px;
 }
 
-.form-title {
+.form-container .form-title {
     text-align: center;
     margin-bottom: 20px;
     font-size: 24px;
 }
 
-.signup-form {
+.form-container .signup-form {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 }
 
-.left-section, .right-section {
+.form-container .left-section, .right-section {
     width: 48%; /* Each section takes about half of the width */
 }
 
-.form-group {
+.form-container .form-group {
     margin-bottom: 15px;
 }
 
-.form-group label {
+.form-container .form-group label {
     display: block;
     margin-bottom: 5px;
     font-size: 14px;
 }
 
-.form-group input {
+.form-container .form-group input {
     width: 100%;
     padding: 8px;
     font-size: 14px;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
-.checkbox-group {
+.form-container .checkbox-group {
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
 }
 
-.checkbox-group label {
+.form-container .checkbox-group label {
     display: flex;
     align-items: center;
     white-space: nowrap; /* Prevents text wrapping */
@@ -65,10 +62,10 @@
     font-size: 14px;
 }
 
-.checkbox-group input[type="checkbox"] {
+.form-container .checkbox-group input[type="checkbox"] {
     margin-right: 10px;
 }
-.submit-btn {
+.form-container .submit-btn {
     width: 50%;
     padding: 10px;
     font-size: 16px;
@@ -81,7 +78,7 @@
     display: block;
 }
 
-.submit-btn:hover {
+.form-container .submit-btn:hover {
     background-color: #45a049;
 }
 
