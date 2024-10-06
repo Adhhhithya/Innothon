@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Linkedin, Phone, Mail } from 'lucide-react';
-
+import './Homepage.css'
 const doctors = [
   "Dr. Sarah Johnson - Cardiologist",
   "Dr. Michael Chen - Neurologist",
