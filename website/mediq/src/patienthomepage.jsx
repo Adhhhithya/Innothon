@@ -1,16 +1,26 @@
 import React, { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { X, Linkedin, Phone, Mail } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Linkedin, Github, Phone, Mail } from 'lucide-react';
 import './PatientHomePage.css';
 
 const hospitals = [
-  { name: "Hospital 1", rating: "4.5", status: "Free" },
-  { name: "Hospital 2", rating: "3.8", status: "Busy" },
-  { name: "Hospital 3", rating: "4.2", status: "Free" },
+  { name: "Kauvery", rating: "4.5", status: "Free" },
+  { name: "KMC", rating: "3.8", status: "Busy" },
+  { name: "Stanley", rating: "4.2", status: "Free" },
+  { name: "Chennai National Hospital", rating: "4.7", status: "Free" },
+  { name: "Gleneagles", rating: "4.0", status: "Busy" },
+  { name: "Rajiv Gandhi ", rating: "4.4", status: "Free" },
+];
+
+const creators = [
+  { name: "Adhidhya J", image: "/assets/Adhithya-profile.jpg" },
+  { name: "K.Israel Paul", image: "/assets/Paul-profile.jpg" },
+  { name: "Ajay S Vasan", image: "/assets/Ajay-profile.jpg" },
+  { name: "D.Frank Jeyasingh", image: "/api/placeholder/50/50" },
+  { name: "Ashik", image: "/api/placeholder/50/50" },
 ];
 
 export default function PatientHomePage() {
-  const [showForm, setShowForm] = useState(false);
   const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
@@ -20,58 +30,6 @@ export default function PatientHomePage() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const AppointmentForm = () => (
-    <motion.div 
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="modal"
-      onClick={() => setShowForm(false)}
-    >
-      <motion.div 
-        initial={{ y: 50, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        exit={{ y: 50, opacity: 0 }}
-        className="form-container"
-        onClick={e => e.stopPropagation()}
-      >
-        <button 
-          onClick={() => setShowForm(false)}
-          className="close-btn"
-        >
-          <X size={24} />
-        </button>
-        <h2>Book Appointment</h2>
-        <form>
-          <div className="form-group">
-            <label>Name</label>
-            <input type="text" />
-          </div>
-          <div className="form-group">
-            <label>Age</label>
-            <input type="number" />
-          </div>
-          <div className="form-group">
-            <label>Select Hospital</label>
-            <select>
-              <option value="">Choose a hospital</option>
-              {hospitals.map((hospital, index) => (
-                <option key={index} value={hospital.name}>{hospital.name}</option>
-              ))}
-            </select>
-          </div>
-          <motion.button 
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="btn btn-primary"
-          >
-            Book Now
-          </motion.button>
-        </form>
-      </motion.div>
-    </motion.div>
-  );
 
   return (
     <div className="patient-home">
@@ -107,14 +65,6 @@ export default function PatientHomePage() {
           >
             Discover top-rated hospitals and book appointments with ease.
           </motion.p>
-          <motion.button
-            className="btn btn-primary"
-            onClick={() => setShowForm(true)}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Book Appointment
-          </motion.button>
         </div>
       </section>
 
@@ -143,9 +93,46 @@ export default function PatientHomePage() {
         </div>
       </section>
 
-      <AnimatePresence>
-        {showForm && <AppointmentForm />}
-      </AnimatePresence>
+      <section className="contact">
+        <motion.h2
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          Contact Us
+        </motion.h2>
+        <div className="contact-content">
+          <div className="social-links">
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+              <Linkedin size={24} />
+            </a>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+              <Github size={24} />
+            </a>
+          </div>
+          <div className="contact-info">
+            <div className="contact-item">
+              <Phone size={20} />
+              <span>9696969696</span>
+            </div>
+            <div className="contact-item">
+              <Mail size={20} />
+              <span>codeofduty69@gmail.com</span>
+            </div>
+          </div>
+        </div>
+        <div className="creators">
+          <h3>Creators</h3>
+          <div className="creators-list">
+            {creators.map((creator, index) => (
+              <div key={index} className="creator-item">
+                <img src={creator.image} alt={creator.name} />
+                <span>{creator.name}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
