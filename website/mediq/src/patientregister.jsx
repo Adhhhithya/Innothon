@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import './patientLogin.css';
+import './patientRegister.css';
+import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
+import HomePage from './patienthomepage';
 
-export default function Patientlogin() {
+export default function PatientRegister() {
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -86,8 +88,7 @@ export default function Patientlogin() {
               Terms & Conditions
             </span>
           </div>
-          
-          <button type="submit" className="submit-btn">Complete Registration</button>
+          <button onClick={() => navigate('/patienthomepage')} type="submit" className="submit-btn">Complete Registration</button>
         </form>
       </div>
     </div>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import './Hospitallogin.css';
+import './Hospitalregister.css';
 
-const HospitalLogin = () => {
+const HospitalRegister = () => {
     const [specialization, setSpecialization] = useState('');
 
     const handleSubmit = (e) => {
@@ -75,7 +75,7 @@ const HospitalLogin = () => {
     );
 }
 
-export default HospitalLogin;
+export default HospitalRegister;
 
 
 

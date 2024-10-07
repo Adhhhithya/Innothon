@@ -4,8 +4,11 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: #1A1A1A;
+ 
   color: #D4AF37;
+}
+body{
+  background-color: #1A1A1A;
 }
 
 .logo {

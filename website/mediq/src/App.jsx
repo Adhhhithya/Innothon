@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
 import './App.css';
-import HospitalLogin from './hospitallogin.jsx';
-import Patientlogin from './patientlogin.jsx';
+import HospitalRegister from './hospitalregister.jsx';
+import PatientRegister from './patientregister.jsx';
 
 const MainPage = () => {
   const navigate = useNavigate();
@@ -15,8 +15,8 @@ const MainPage = () => {
       <h1>Welcome to MediQ</h1>
       <h2>Are you a</h2>
       <div className="button-container">
-        <button onClick={() => navigate('/hospitallogin')}>Hospital</button>
-        <button onClick={() => navigate('/patientlogin')}>User/Patient</button>
+        <button onClick={() => navigate('/hospitalregister')}>Hospital</button>
+        <button onClick={() => navigate('/patientregister')}>User/Patient</button>
       </div>
     </div>
   );
@@ -27,8 +27,8 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/" element={<MainPage />} />
-        <Route path="/patientlogin" element={<Patientlogin />} />
-        <Route path="/hospitallogin" element={<HospitalLogin />} />
+        <Route path="/patientregister" element={<PatientRegister />} />
+        <Route path="/hospitalregister" element={<HospitalRegister />} />
       </Routes>
     </Router>
   );
