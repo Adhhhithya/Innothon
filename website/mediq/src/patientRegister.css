@@ -28,10 +28,16 @@
     width: 100%;
     padding: 8px;
     margin-top: 4px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border: 1.5px solid #ccc;
+    border-radius: 11px;
 }
-
+.P-login label{
+    color: #C6A052;
+}
+.P-login input,span{
+    background-color: #1A1A1A;
+    color: #C6A052;
+}
 .P-login .checkbox-group {
     display: flex;
     flex-direction: column;
@@ -51,7 +57,7 @@
     width: 100%;
     padding: 10px;
     background-color: #C6A052;
-    color: white;
+    color: #1A1A1A;
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -64,11 +70,11 @@
 
 .P-login .checkbox-group {
     display: flex;
-    align-items: center; /* Aligns items vertically in the center */
-    gap: 10px; /* Optional: Adds space between the checkboxes */
+    align-items: center; 
+    gap: 10px;
   }
   
 .P-login .checkbox-label {
-    white-space: nowrap; /* Prevents the label from wrapping */
+    white-space: nowrap;
   }
   

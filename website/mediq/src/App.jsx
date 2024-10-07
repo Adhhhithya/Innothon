@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-route
 import './App.css';
 import HospitalRegister from './hospitalregister.jsx';
 import PatientRegister from './patientregister.jsx';
-
+import PatientHomePage from './patienthomepage.jsx';
 const MainPage = () => {
   const navigate = useNavigate();
   
@@ -70,7 +70,7 @@ const UserLogin = () => {
           />
         </div>
         <div className="button-group">
-          <button type="submit">Login</button>
+          <button type="submit" onClick={()=>navigate('/patienthomepage')}>Login</button>
           <button type="button" onClick={() => navigate('/patientregister')}>Register</button>
         </div>
       </form>
@@ -141,6 +141,7 @@ const App = () => {
         <Route path="/" element={<MainPage />} />
         <Route path="/login" element={<UserLogin />} />
         <Route path="/Hlogin" element={<HospitalLogin />} />
+        <Route path="/patienthomepage" element={<PatientHomePage />} />
         <Route path="/hospitalregister" element={<HospitalRegister />} />
         <Route path="/patientregister" element={<PatientRegister />} />
       </Routes>

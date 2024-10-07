@@ -10,7 +10,7 @@ const HospitalRegister = () => {
     };
 
     return (
-        <div className="form-container">
+        <div className="H-register">
             <div className="logo">Logo</div>
             <h2 className="form-title">HOSPITAL SIGN-UP</h2>
             <form onSubmit={handleSubmit} className="signup-form">
@@ -41,7 +41,7 @@ const HospitalRegister = () => {
                     </div>
                     <div className="form-group">
                         <label>Specializations:</label>
-                        <select value={specialization} onChange={(e) => setSpecialization(e.target.value)} required>
+                        <select className="selection" value={specialization} onChange={(e) => setSpecialization(e.target.value)} required>
                             <option value="" disabled>Select Specialization</option>
                             <option value="Cardiology">Cardiology</option>
                             <option value="Orthopedics">Orthopedics</option>

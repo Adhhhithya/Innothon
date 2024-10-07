@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Linkedin, Phone, Mail } from 'lucide-react';
-import './Patienthomepage.css'
+import './PatientHomePage.css';
 
 const hospitals = [
   { name: "Hospital 1", rating: "4.5", status: "Free" },
@@ -9,7 +9,7 @@ const hospitals = [
   { name: "Hospital 3", rating: "4.2", status: "Free" },
 ];
 
-export default function HomePage() {
+export default function PatientHomePage() {
   const [showForm, setShowForm] = useState(false);
   const [scrollY, setScrollY] = useState(0);
 
@@ -19,21 +19,6 @@ export default function HomePage() {
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
-    const revealElements = document.querySelectorAll('.reveal');
-    const revealElementsOnScroll = () => {
-      revealElements.forEach((element) => {
-        const elementTop = element.getBoundingClientRect().top;
-        const elementVisible = 150;
-        if (elementTop < window.innerHeight - elementVisible) {
-          element.classList.add('active');
-        }
-      });
-    };
-    window.addEventListener('scroll', revealElementsOnScroll);
-    return () => window.removeEventListener('scroll', revealElementsOnScroll);
   }, []);
 
   const AppointmentForm = () => (
@@ -53,23 +38,23 @@ export default function HomePage() {
       >
         <button 
           onClick={() => setShowForm(false)}
-          className="btn"
+          className="close-btn"
         >
           <X size={24} />
         </button>
-        <h2 className="mb-2">Book Appointment</h2>
-        <form className="form-group">
+        <h2>Book Appointment</h2>
+        <form>
           <div className="form-group">
-            <label className="form-label">Name</label>
-            <input type="text" className="form-input" />
+            <label>Name</label>
+            <input type="text" />
           </div>
           <div className="form-group">
-            <label className="form-label">Age</label>
-            <input type="number" className="form-input" />
+            <label>Age</label>
+            <input type="number" />
           </div>
           <div className="form-group">
-            <label className="form-label">Select Hospital</label>
-            <select className="form-input">
+            <label>Select Hospital</label>
+            <select>
               <option value="">Choose a hospital</option>
               {hospitals.map((hospital, index) => (
                 <option key={index} value={hospital.name}>{hospital.name}</option>
@@ -81,7 +66,7 @@ export default function HomePage() {
             whileTap={{ scale: 0.98 }}
             className="btn btn-primary"
           >
-            Pay Now
+            Book Now
           </motion.button>
         </form>
       </motion.div>
@@ -89,8 +74,8 @@ export default function HomePage() {
   );
 
   return (
-    <div className="p-home">
-      <nav className="nav">
+    <div className="patient-home">
+      <nav className={`nav ${scrollY > 50 ? 'scrolled' : ''}`}>
         <div className="nav-content">
           <motion.h1 
             className="nav-logo"
@@ -101,27 +86,59 @@ export default function HomePage() {
             Mediq
           </motion.h1>
           <div className="search-bar">
-            <input type="text" placeholder="Search for hospitals..." className="search-input" />
+            <input type="text" placeholder="Search for hospitals..." />
           </div>
         </div>
       </nav>
 
-      <section className="section">
+      <section className="hero">
+        <div className="hero-content">
+          <motion.h1
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            Find Your Perfect Care
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            Discover top-rated hospitals and book appointments with ease.
+          </motion.p>
+          <motion.button
+            className="btn btn-primary"
+            onClick={() => setShowForm(true)}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Book Appointment
+          </motion.button>
+        </div>
+      </section>
+
+      <section className="hospitals">
         <motion.h2 
-          className="mb-2 text-accent reveal"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          Hospitals
+          Featured Hospitals
         </motion.h2>
         <div className="hospital-list">
           {hospitals.map((hospital, index) => (
-            <div key={index} className="hospital-item reveal">
+            <motion.div 
+              key={index} 
+              className="hospital-item"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+            >
               <h3>{hospital.name}</h3>
               <p>Rating: {hospital.rating}</p>
               <p>Status: {hospital.status}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </section>
