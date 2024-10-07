@@ -15,9 +15,65 @@ const MainPage = () => {
       <h1>Welcome to MediQ</h1>
       <h2>Are you a</h2>
       <div className="button-container">
-        <button onClick={() => navigate('/hospitalregister')}>Hospital</button>
-        <button onClick={() => navigate('/patientregister')}>User/Patient</button>
+        <button onClick={() => navigate('/login')}>User</button>
+        <button onClick={() => navigate('/patientregister')}>Hospital</button>
       </div>
+    </div>
+  );
+};
+
+const UserLogin = () => {
+  const navigate = useNavigate();
+  const [loginData, setLoginData] = React.useState({
+    username: '',
+    password: '',
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setLoginData({
+      ...loginData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(loginData);
+    
+  };
+
+  return (
+    <div className="user-login">
+      <h2>User Login</h2>
+      <form onSubmit={handleSubmit}>
+        <div className="input-group">
+          <label htmlFor="username">Username:</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            value={loginData.username}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="input-group">
+          <label htmlFor="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            value={loginData.password}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="button-group">
+          <button type="submit">Login</button>
+          <button type="button" onClick={() => navigate('/patientregister')}>Register</button>
+        </div>
+      </form>
     </div>
   );
 };
@@ -27,8 +83,9 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/" element={<MainPage />} />
-        <Route path="/patientregister" element={<PatientRegister />} />
+        <Route path="/login" element={<UserLogin />} />
         <Route path="/hospitalregister" element={<HospitalRegister />} />
+        <Route path="/patientregister" element={<PatientRegister />} />
       </Routes>
     </Router>
   );
