@@ -4,15 +4,16 @@ import './App.css';
 import HospitalRegister from './hospitalregister.jsx';
 import PatientRegister from './patientregister.jsx';
 import PatientHomePage from './patienthomepage.jsx';
+import MainLogo from './assets/Mediq-logo.png';
 const MainPage = () => {
   const navigate = useNavigate();
   
   return (
     <div className="main-page">
       <div className="logo">
-        <h2>MediQ Logo</h2>
+        <img src={MainLogo} alt="" />
       </div>
-      <h1>Welcome to MediQ</h1>
+      <h1>Welcome to Mediq</h1>
       <h2>Are you a</h2>
       <div className="button-container">
         <button onClick={() => navigate('/login')}>User</button>
