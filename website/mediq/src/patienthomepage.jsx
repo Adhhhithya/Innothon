@@ -22,6 +22,8 @@ const creators = [
 
 export default function PatientHomePage() {
   const [scrollY, setScrollY] = useState(0);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filteredHospitals, setFilteredHospitals] = useState([]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,6 +32,17 @@ export default function PatientHomePage() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    const filtered = hospitals.filter(hospital =>
+      hospital.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredHospitals(filtered);
+  }, [searchTerm]);
+
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
 
   return (
     <div className="patient-home">
@@ -43,8 +56,24 @@ export default function PatientHomePage() {
           >
             Mediq
           </motion.h1>
-          <div className="search-bar">
-            <input type="text" placeholder="Search for hospitals..." />
+          <div className="search-container">
+            <div className="search-bar">
+              <input 
+                type="text" 
+                placeholder="Search for hospitals..." 
+                value={searchTerm}
+                onChange={handleSearchChange}
+              />
+            </div>
+            {searchTerm && (
+              <div className="dropdown-box">
+                {filteredHospitals.map((hospital, index) => (
+                  <div key={index} className="dropdown-item">
+                    {hospital.name}
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </nav>
