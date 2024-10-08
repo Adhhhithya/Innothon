@@ -13,7 +13,7 @@ const hospitals = [
 ];
 
 const creators = [
-  { name: "Adhidhya J", image: "/assets/Adhithya-profile.jpg" },
+  { name: "Adhidhya J", image: {} },
   { name: "K.Israel Paul", image: "/assets/Paul-profile.jpg" },
   { name: "Ajay S Vasan", image: "/assets/Ajay-profile.jpg" },
   { name: "D.Frank Jeyasingh", image: "/api/placeholder/50/50" },
@@ -151,14 +151,14 @@ export default function PatientHomePage() {
           </div>
         </div>
         <div className="creators">
-          <h3>Creators</h3>
+          <h3>Developers</h3>
           <div className="creators-list">
-            {creators.map((creator, index) => (
-              <div key={index} className="creator-item">
-                <img src={creator.image} alt={creator.name} />
-                <span>{creator.name}</span>
-              </div>
-            ))}
+          {creators.map((creator, index) => (
+          <div key={index} className="creator-item" style={{"--item-index": index}}>
+          <img src={creator.image} alt={creator.name} />
+          <span>{creator.name}</span>
+          </div>
+          ))}
           </div>
         </div>
       </section>
