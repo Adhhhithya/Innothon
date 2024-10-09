@@ -5,6 +5,8 @@ import HospitalRegister from './hospitalregister.jsx';
 import PatientRegister from './patientregister.jsx';
 import PatientHomePage from './patienthomepage.jsx';
 import MainLogo from './assets/Mediq-logo.png';
+import HospitalHomePage from './hospitalhomepage.jsx';
+
 const MainPage = () => {
   const navigate = useNavigate();
   
@@ -127,7 +129,7 @@ const HospitalLogin = () => {
           />
         </div>
         <div className="button-group">
-          <button type="submit">Login</button>
+          <button type="submit" onClick={()=>navigate('/hospitalhomepage')}>Login</button>
           <button type="button" onClick={() => navigate('/hospitalregister')}>Register</button>
         </div>
       </form>
@@ -143,6 +145,7 @@ const App = () => {
         <Route path="/login" element={<UserLogin />} />
         <Route path="/Hlogin" element={<HospitalLogin />} />
         <Route path="/patienthomepage" element={<PatientHomePage />} />
+        <Route path="/hospitalhomepage" element={<HospitalHomePage />} />
         <Route path="/hospitalregister" element={<HospitalRegister />} />
         <Route path="/patientregister" element={<PatientRegister />} />
       </Routes>
