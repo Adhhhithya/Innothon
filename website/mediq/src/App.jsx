@@ -13,14 +13,17 @@ const MainPage = () => {
   return (
     <div className="main-page">
       <div className="logo">
-        <img src={MainLogo} alt="" />
+        <img src={MainLogo} alt="Mediq Logo" />
       </div>
-      <h1>Welcome to Mediq</h1>
-      <h2>Are you a</h2>
-      <div className="button-container">
-        <button onClick={() => navigate('/login')}>User</button>
-        <button onClick={() => navigate('/Hlogin')}>Hospital</button>
+      <div className="content">
+        <h1>Welcome to Mediq</h1>
+        <h2>Are you a</h2>
+        <div className="button-container">
+          <button onClick={() => navigate('/login')}>User</button>
+          <button onClick={() => navigate('/Hlogin')}>Hospital</button>
+        </div>
       </div>
+      <div className="bottom-right">Mediq</div>
     </div>
   );
 };
@@ -43,40 +46,46 @@ const UserLogin = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(loginData);
-    
+    navigate('/patienthomepage');
   };
 
   return (
-    <div className="user-login">
-      <h2>User Login</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="input-group">
-          <label htmlFor="username">Username:</label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            value={loginData.username}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="input-group">
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={loginData.password}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="button-group">
-          <button type="submit" onClick={()=>navigate('/patienthomepage')}>Login</button>
-          <button type="button" onClick={() => navigate('/patientregister')}>Register</button>
-        </div>
-      </form>
+    <div className="login-page user-login">
+      <div className="logo">
+        <img src={MainLogo} alt="Mediq Logo" />
+      </div>
+      <div className="login-content">
+        <h2>User Login</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="input-group">
+            <label htmlFor="username">Username:</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              value={loginData.username}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="input-group">
+            <label htmlFor="password">Password:</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={loginData.password}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="button-group">
+            <button type="submit">Login</button>
+            <button type="button" onClick={() => navigate('/patientregister')}>Register</button>
+          </div>
+        </form>
+      </div>
+      <div className="bottom-right">Mediq</div>
     </div>
   );
 };
@@ -99,40 +108,46 @@ const HospitalLogin = () => {
   const handlehospitalSubmit = (e) => {
     e.preventDefault();
     console.log(HloginData);
-    
+    navigate('/hospitalhomepage');
   };
 
   return (
-    <div className="hospital-login">
-      <h2>Hospital Login</h2>
-      <form onSubmit={handlehospitalSubmit}>
-        <div className="input-group">
-          <label htmlFor="username">Username:</label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            value={HloginData.username}
-            onChange={handlehospitalChange}
-            required
-          />
-        </div>
-        <div className="input-group">
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={HloginData.password}
-            onChange={handlehospitalChange}
-            required
-          />
-        </div>
-        <div className="button-group">
-          <button type="submit" onClick={()=>navigate('/hospitalhomepage')}>Login</button>
-          <button type="button" onClick={() => navigate('/hospitalregister')}>Register</button>
-        </div>
-      </form>
+    <div className="login-page hospital-login">
+      <div className="logo">
+        <img src={MainLogo} alt="Mediq Logo" />
+      </div>
+      <div className="login-content">
+        <h2>Hospital Login</h2>
+        <form onSubmit={handlehospitalSubmit}>
+          <div className="input-group">
+            <label htmlFor="username">Username:</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              value={HloginData.username}
+              onChange={handlehospitalChange}
+              required
+            />
+          </div>
+          <div className="input-group">
+            <label htmlFor="password">Password:</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={HloginData.password}
+              onChange={handlehospitalChange}
+              required
+            />
+          </div>
+          <div className="button-group">
+            <button type="submit">Login</button>
+            <button type="button" onClick={() => navigate('/hospitalregister')}>Register</button>
+          </div>
+        </form>
+      </div>
+      <div className="bottom-right">Mediq</div>
     </div>
   );
 };

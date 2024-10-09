@@ -1,29 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Linkedin, Github, Phone, Mail } from 'lucide-react';
+import { Linkedin, Github, Phone, Mail, Hospital, Star } from 'lucide-react';
 import './PatientHomePage.css';
+import AdhiProfile from './assets/Adhithya-profile.jpg';
+import PaulProfile from './assets/Paul-profile.jpg';
+import AjayProfile from './assets/Ajay-profile.jpg';
 
 const hospitals = [
-  { name: "Kauvery", rating: "4.5", status: "Free" },
-  { name: "KMC", rating: "3.8", status: "Busy" },
-  { name: "Stanley", rating: "4.2", status: "Free" },
-  { name: "Chennai National Hospital", rating: "4.7", status: "Free" },
-  { name: "Gleneagles", rating: "4.0", status: "Busy" },
-  { name: "Rajiv Gandhi ", rating: "4.4", status: "Free" },
+  { name: "Kauvery Hospital", rating: "4.5", status: "Available" },
+  { name: "KMC Hospital", rating: "3.8", status: "Busy" },
+  { name: "Stanley Medical College", rating: "4.2", status: "Available" },
+  { name: "Chennai National Hospital", rating: "4.7", status: "Available" },
+  { name: "Gleneagles Global Health City", rating: "4.0", status: "Busy" },
+  { name: "Rajiv Gandhi Government Hospital", rating: "4.4", status: "Available" },
 ];
 
 const creators = [
-  { name: "Adhidhya J", image: {} },
-  { name: "K.Israel Paul", image: "/assets/Paul-profile.jpg" },
-  { name: "Ajay S Vasan", image: "/assets/Ajay-profile.jpg" },
-  { name: "D.Frank Jeyasingh", image: "/api/placeholder/50/50" },
-  { name: "Ashik", image: "/api/placeholder/50/50" },
+  { name: "Adhidhya J", image: AdhiProfile },
+  { name: "K.Israel Paul", image: PaulProfile},
+  { name: "Ajay S Vasan", image: AjayProfile },
+  { name: "D.Frank Jeyasingh", image: "/api/placeholder/80/80" },
+  { name: "Ashik", image: "/api/placeholder/80/80" },
 ];
 
 export default function PatientHomePage() {
   const [scrollY, setScrollY] = useState(0);
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredHospitals, setFilteredHospitals] = useState([]);
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -56,20 +60,27 @@ export default function PatientHomePage() {
           >
             Mediq
           </motion.h1>
-          <div className="search-container">
+          <div className={`search-container ${isSearchFocused ? 'focused' : ''}`}>
             <div className="search-bar">
               <input 
                 type="text" 
                 placeholder="Search for hospitals..." 
                 value={searchTerm}
                 onChange={handleSearchChange}
+                onFocus={() => setIsSearchFocused(true)}
+                onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
               />
             </div>
-            {searchTerm && (
+            {isSearchFocused && searchTerm && (
               <div className="dropdown-box">
                 {filteredHospitals.map((hospital, index) => (
                   <div key={index} className="dropdown-item">
-                    {hospital.name}
+                    <Hospital size={16} className="hospital-icon" />
+                    <span>{hospital.name}</span>
+                    <span className="hospital-rating">
+                      <Star size={12} className="star-icon" />
+                      {hospital.rating}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -106,7 +117,7 @@ export default function PatientHomePage() {
           Featured Hospitals
         </motion.h2>
         <div className="hospital-list">
-          {hospitals.map((hospital, index) => (
+          {(searchTerm ? filteredHospitals : hospitals).map((hospital, index) => (
             <motion.div 
               key={index} 
               className="hospital-item"
@@ -114,8 +125,9 @@ export default function PatientHomePage() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
             >
+              <Hospital size={24} color="#7EB6B6" />
               <h3>{hospital.name}</h3>
-              <p>Rating: {hospital.rating}</p>
+              <p><Star size={16} color="#7EB6B6" /> {hospital.rating}</p>
               <p>Status: {hospital.status}</p>
             </motion.div>
           ))}
@@ -153,12 +165,12 @@ export default function PatientHomePage() {
         <div className="creators">
           <h3>Developers</h3>
           <div className="creators-list">
-          {creators.map((creator, index) => (
-          <div key={index} className="creator-item" style={{"--item-index": index}}>
-          <img src={creator.image} alt={creator.name} />
-          <span>{creator.name}</span>
-          </div>
-          ))}
+            {creators.map((creator, index) => (
+              <div key={index} className="creator-item" style={{"--item-index": index}}>
+                <img src={creator.image} alt={creator.name} />
+                <span>{creator.name}</span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
