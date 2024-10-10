@@ -1,0 +1,122 @@
+.pro {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+.pro .header {
+    display: flex;
+    align-items: center;
+    background-color: #202020; /* Dark background for header */
+    border-radius: 10px;
+    padding: 20px;
+    border: 2px solid #d4b654; /* Gold border */
+    margin-bottom: 70px;
+    margin-left: 150px;
+    margin-top: 20px;
+    margin-right: 40px;
+}
+  
+.pro .hospital-logo {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 1.5em;
+    color: #ffffff;
+    padding: 20px;
+}
+  
+.pro .hospital-logo img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+  
+.pro .hospital-logo-text {
+    margin-left: 10px;
+    padding: 5px 10px;
+    border-radius: 20px;
+    border: 1px solid #d4b654;
+    color: #ffffff;
+}
+  
+.pro .hospital-cover-photo {
+    margin-left: 20px;
+    padding: 20px;
+    border-radius: 20px;
+    flex-grow: 1;
+    text-align: center;
+    color: #ffffff;
+    font-size: 1.5em;
+}
+
+.pro .doctor-profile {
+    display: flex;
+    align-items: center;
+    margin: 20px 0; /* Adjusted margin to push down doctor section */
+}
+
+.pro .profile-photo img {
+    width: 80px;
+    height: 80px;
+    background-color: #ddd;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.pro .doctor-info {
+    font-size: 18px;
+}
+
+.pro .appointments table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px; /* Pushed down the table section */
+}
+
+.pro .appointments th, .appointments td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+.pro .appointments th {
+    background-color: #f2f2f2;
+}
+
+.pro .appointments td a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.pro .appointments td a:hover {
+    text-decoration: underline;
+}
+
+.pro footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.pro .reserve-btn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.pro .footer1 {
+    position: absolute;
+    right: 0;   /* Align to the right */
+    bottom: 20;  /* Align to the bottom */
+    font-size: 1.5em;
+    color: #ffffff;
+    padding: 20px; /* Add padding for better spacing */
+}
+
+.pro .reserve-btn:hover {
+    background-color: #0056b3;
+}

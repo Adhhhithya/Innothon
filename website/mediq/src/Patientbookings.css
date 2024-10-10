@@ -1,0 +1,142 @@
+/* Global Styles */
+.dash1 body {
+    margin: 0;
+    padding: 0;
+    font-family: "Arial", sans-serif;
+    background-color: #0d292e; /* Matches the dark theme in your images */
+    color: #ffffff;
+}
+  
+.dash1 {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+  
+  /* Header Styles */
+.dash1 .header {
+    display: flex;
+    align-items: center;
+    background-color: #202020; /* Dark background for header */
+    border-radius: 10px;
+    padding: 20px;
+    border: 2px solid #d4b654; /* Gold border */
+    margin-bottom: 55px;
+    margin-right: 10px;
+    margin-left: 23px;
+}
+  
+.dash1 .hospital-logo {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 1.5em;
+    color: #ffffff;
+    padding: 20px;
+}
+  
+.dash1 .hospital-logo img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+  
+.dash1 .hospital-logo-text {
+    margin-left: 10px;
+    padding: 5px 10px;
+    border-radius: 20px;
+    border: 1px solid #d4b654;
+    color: #ffffff;
+}
+  
+.dash1 .hospital-cover-photo {
+    margin-left: 20px;
+    padding: 20px;
+    border-radius: 20px;
+    flex-grow: 1;
+    text-align: center;
+    color: #ffffff;
+    font-size: 1.5em;
+}
+  
+  /* Content Styles */
+.dash1 .content-container {
+    margin-top: 20px;
+    background-color: #14292b;
+    padding: 20px;
+    border-radius: 10px;
+}
+  
+.dash1 .patient-bookings-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+  
+.dash1 .appointments-count {
+    font-size: 1.5em;
+    color: #d4b654;
+}
+  
+.dash1 .bookings {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.dash1 .booking-card {
+    display: flex;
+    align-items: center;
+    background-color: #1b3a40;
+    padding: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dash1 .booking-card:hover {
+    background-color: #234b52;
+}
+
+.dash1 .doctor-avatar img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.dash1 .doctor-info {
+    flex-grow: 1;
+}
+
+.dash1 .doctor-info p {
+    margin: 0;
+    color: #ffffff;
+}
+
+.dash1 .doctor-info p:first-child {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+  
+.dash1 .footer {
+    position: absolute;
+    right: 0;   /* Align to the right */
+    bottom: 20;  /* Align to the bottom */
+    font-size: 1.5em;
+    color: #ffffff;
+    padding: 20px; /* Add padding for better spacing */
+}
+
+.dash1 .patient-bookings-header h2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.dash1 .booking-icon {
+    color: #d4b654; /* This matches the gold color used in the header */
+}
+  
