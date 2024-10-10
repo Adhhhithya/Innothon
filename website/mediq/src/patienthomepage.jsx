@@ -1,18 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Linkedin, Github, Phone, Mail, Hospital, Star } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { Hospital, Star, Linkedin, Github, Phone, Mail } from 'lucide-react';
 import './PatientHomePage.css';
 import AdhiProfile from './assets/Adhithya-profile.jpg';
 import PaulProfile from './assets/Paul-profile.jpg';
 import AjayProfile from './assets/Ajay-profile.jpg';
 
 const hospitals = [
-  { name: "Kauvery Hospital", rating: "4.5", status: "Available" },
-  { name: "KMC Hospital", rating: "3.8", status: "Busy" },
-  { name: "Stanley Medical College", rating: "4.2", status: "Available" },
-  { name: "Chennai National Hospital", rating: "4.7", status: "Available" },
-  { name: "Gleneagles Global Health City", rating: "4.0", status: "Busy" },
-  { name: "Rajiv Gandhi Government Hospital", rating: "4.4", status: "Available" },
+  { id: 1, name: "Kauvery Hospital", rating: "4.5", status: "Available" },
+  { id: 2, name: "KMC Hospital", rating: "3.8", status: "Busy" },
+  { id: 3, name: "Stanley Medical Hospital", rating: "4.2", status: "Available" },
+  { id: 4, name: "Chennai National Hospital", rating: "4.7", status: "Available" },
+  { id: 5, name: "Gleneagles Global Health City", rating: "4.0", status: "Busy" },
+  { id: 6, name: "Rajiv Gandhi Government Hospital", rating: "4.4", status: "Available" },
 ];
 
 const creators = [
@@ -23,16 +24,64 @@ const creators = [
   { name: "Ashik", image: "/api/placeholder/80/80" },
 ];
 
+function Navigation({ searchTerm, setSearchTerm, isSearchFocused, setIsSearchFocused, filteredHospitals }) {
+  const navigate = useNavigate();
+
+  return (
+    <nav className={`nav ${window.scrollY > 50 ? 'scrolled' : ''}`}>
+      <div className="nav-content">
+        <motion.h1 
+          className="nav-logo"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          Mediq
+        </motion.h1>
+        <div className={`search-container ${isSearchFocused ? 'focused' : ''}`}>
+          <div className="search-bar">
+            <input 
+              type="text" 
+              placeholder="Search for hospitals..." 
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              onFocus={() => setIsSearchFocused(true)}
+              onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
+            />
+          </div>
+          {isSearchFocused && searchTerm && (
+            <div className="dropdown-box">
+              {filteredHospitals.map((hospital) => (
+                <div 
+                  key={hospital.id} 
+                  className="dropdown-item"
+                  onClick={() => navigate(`/doctors/${hospital.id}`)}
+                >
+                  <Hospital size={16} className="hospital-icon" />
+                  <span>{hospital.name}</span>
+                  <span className="hospital-rating">
+                    <Star size={12} className="star-icon" />
+                    {hospital.rating}
+                  </span>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    </nav>
+  );
+}
+
 export default function PatientHomePage() {
   const [scrollY, setScrollY] = useState(0);
   const [searchTerm, setSearchTerm] = useState('');
-  const [filteredHospitals, setFilteredHospitals] = useState([]);
+  const [filteredHospitals, setFilteredHospitals] = useState(hospitals);
   const [isSearchFocused, setIsSearchFocused] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
+    const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -44,51 +93,16 @@ export default function PatientHomePage() {
     setFilteredHospitals(filtered);
   }, [searchTerm]);
 
-  const handleSearchChange = (e) => {
-    setSearchTerm(e.target.value);
-  };
-
   return (
     <div className="patient-home">
-      <nav className={`nav ${scrollY > 50 ? 'scrolled' : ''}`}>
-        <div className="nav-content">
-          <motion.h1 
-            className="nav-logo"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            Mediq
-          </motion.h1>
-          <div className={`search-container ${isSearchFocused ? 'focused' : ''}`}>
-            <div className="search-bar">
-              <input 
-                type="text" 
-                placeholder="Search for hospitals..." 
-                value={searchTerm}
-                onChange={handleSearchChange}
-                onFocus={() => setIsSearchFocused(true)}
-                onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
-              />
-            </div>
-            {isSearchFocused && searchTerm && (
-              <div className="dropdown-box">
-                {filteredHospitals.map((hospital, index) => (
-                  <div key={index} className="dropdown-item">
-                    <Hospital size={16} className="hospital-icon" />
-                    <span>{hospital.name}</span>
-                    <span className="hospital-rating">
-                      <Star size={12} className="star-icon" />
-                      {hospital.rating}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
-      </nav>
-
+      <Navigation 
+        searchTerm={searchTerm} 
+        setSearchTerm={setSearchTerm}
+        isSearchFocused={isSearchFocused}
+        setIsSearchFocused={setIsSearchFocused}
+        filteredHospitals={filteredHospitals}
+      />
+      
       <section className="hero">
         <div className="hero-content">
           <motion.h1
@@ -117,13 +131,14 @@ export default function PatientHomePage() {
           Featured Hospitals
         </motion.h2>
         <div className="hospital-list">
-          {(searchTerm ? filteredHospitals : hospitals).map((hospital, index) => (
+          {filteredHospitals.map((hospital, index) => (
             <motion.div 
-              key={index} 
+              key={hospital.id} 
               className="hospital-item"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
+              onClick={() => navigate(`/doctors/${hospital.id}`)}
             >
               <Hospital size={24} color="#7EB6B6" />
               <h3>{hospital.name}</h3>

@@ -49,12 +49,10 @@ const PatientBookings = () => {
                     Hospital Cover Photo
                 </div>
             </div>
-    
-            {/* Patient Bookings Section */}
             <div className="content-container">
                 <div className="patient-bookings-header">
                     <h2>
-                        <Calendar className="booking-icon" size={24} /> {/* Add the Calendar icon */}
+                        <Calendar className="booking-icon" size={24} /> 
                         Patient Bookings
                     </h2>
                 </div>

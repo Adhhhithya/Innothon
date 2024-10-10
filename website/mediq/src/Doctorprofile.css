@@ -1,3 +1,13 @@
+:root {
+    --color-primary: #1A3C40;
+    --color-secondary: #2C5D63;
+    --color-accent: #7EB6B6;
+    --color-text: #E6F3F5;
+    --color-text-dark: #B8D8D8;
+    --color-background: #14292B;
+    --color-card: #1F4649;
+    --color-shadow: rgba(0, 0, 0, 0.2);
+}  
 .pro {
     margin: 0;
     padding: 0;
@@ -8,10 +18,10 @@
 .pro .header {
     display: flex;
     align-items: center;
-    background-color: #202020; /* Dark background for header */
+    background-color: var(--color-background); 
     border-radius: 10px;
     padding: 20px;
-    border: 2px solid #d4b654; /* Gold border */
+    border: 2px solid var(--color-text-dark); 
     margin-bottom: 70px;
     margin-left: 150px;
     margin-top: 20px;
@@ -23,7 +33,7 @@
     left: 0;
     top: 0;
     font-size: 1.5em;
-    color: #ffffff;
+    color: var(--color-text);
     padding: 20px;
 }
   
@@ -37,8 +47,8 @@
     margin-left: 10px;
     padding: 5px 10px;
     border-radius: 20px;
-    border: 1px solid #d4b654;
-    color: #ffffff;
+    border: 1px solid var(--color-text-dark);
+    color: var(--color-text-dark);
 }
   
 .pro .hospital-cover-photo {
@@ -47,20 +57,20 @@
     border-radius: 20px;
     flex-grow: 1;
     text-align: center;
-    color: #ffffff;
+    color: var(--color-text);
     font-size: 1.5em;
 }
 
 .pro .doctor-profile {
     display: flex;
     align-items: center;
-    margin: 20px 0; /* Adjusted margin to push down doctor section */
+    margin: 20px 0; 
 }
 
 .pro .profile-photo img {
     width: 80px;
     height: 80px;
-    background-color: #ddd;
+    background-color: var(--color-background);
     border-radius: 50%;
     margin-right: 20px;
 }
@@ -72,22 +82,22 @@
 .pro .appointments table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px; /* Pushed down the table section */
+    margin-top: 20px; 
 }
 
 .pro .appointments th, .appointments td {
-    border: 1px solid #ddd;
+    border: 1px solid var(--color-text-dark);
     padding: 10px;
     text-align: center;
 }
 
 .pro .appointments th {
-    background-color: #f2f2f2;
+    background-color: var(--color-background);
 }
 
 .pro .appointments td a {
     text-decoration: none;
-    color: #007bff;
+    color: var(--color-text-dark);
 }
 
 .pro .appointments td a:hover {
@@ -101,9 +111,9 @@
 
 .pro .reserve-btn {
     padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
+    background-color: var(--color-secondary);
+    color: var(--color-text);
+    border: var(--color-accent);
     cursor: pointer;
     border-radius: 5px;
 }
@@ -113,10 +123,11 @@
     right: 0;   /* Align to the right */
     bottom: 20;  /* Align to the bottom */
     font-size: 1.5em;
-    color: #ffffff;
+    color: var(--color-text-dark);
     padding: 20px; /* Add padding for better spacing */
 }
 
 .pro .reserve-btn:hover {
-    background-color: #0056b3;
+    background-color: var(--color-accent);
+    box-shadow: var(--color-shadow);
 }
