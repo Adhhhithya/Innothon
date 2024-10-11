@@ -93,6 +93,10 @@ export default function PatientHomePage() {
     setFilteredHospitals(filtered);
   }, [searchTerm]);
 
+  const handleHospitalClick = (hospitalId) => {
+    navigate(`/doctors/${hospitalId}`);
+  };
+
   return (
     <div className="patient-home">
       <Navigation 
@@ -138,7 +142,7 @@ export default function PatientHomePage() {
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              onClick={() => navigate(`/doctors/${hospital.id}`)}
+              onClick={() => handleHospitalClick(hospital.id)}
             >
               <Hospital size={24} color="#7EB6B6" />
               <h3>{hospital.name}</h3>

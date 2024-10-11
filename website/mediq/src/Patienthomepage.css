@@ -17,7 +17,7 @@
   box-sizing: border-box;
 }
 
-body {
+.patient-home body {
   font-family: 'Montserrat', sans-serif;
   background-color: var(--color-background);
   color: var(--color-text);

@@ -1,12 +1,15 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Calendar } from 'lucide-react';
+import { Calendar, Hospital, Star } from 'lucide-react';
+import './doctorList.css';
+import Kavdoc1 from './assets/Kauvery/doc1.png';
+import Kavdoc3 from './assets/Kauvery/doc3.png';
 
 const doctorsData = {
   1: [
-    { id: 1, name: "Dr. John Doe", specialization: "Cardiology", image: "/api/placeholder/150/150" },
-    { id: 2, name: "Dr. Jane Smith", specialization: "Neurology", image: "/api/placeholder/150/150" },
+    { id: 1, name: "Dr. John Doe", specialization: "Cardiology", image: Kavdoc1 },
+    { id: 2, name: "Dr. Jane Smith", specialization: "Neurology", image: Kavdoc3 },
     { id: 3, name: "Dr. Mike Johnson", specialization: "Orthopedics", image: "/api/placeholder/150/150" },
   ],
   2: [
@@ -16,20 +19,57 @@ const doctorsData = {
   // Add more doctors for other hospitals...
 };
 
-export default function DoctorsPage({ hospitals }) {
+const hospitalData = {
+  1: { name: "Kauvery Hospital", banner: "/api/placeholder/1200/150" },
+  2: { name: "KMC Hospital", banner: "/api/placeholder/1200/150" },
+  // Add more hospitals...
+};
+
+function Navigation() {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
+  const navigate = useNavigate();
+
+  return (
+    <nav className="nav">
+      <div className="nav-content">
+        <motion.h1 
+          className="nav-logo"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          onClick={() => navigate('/patienthomepage')}
+        >
+          Mediq
+        </motion.h1>
+        <div className={`search-container ${isSearchFocused ? 'focused' : ''}`}>
+          <div className="search-bar">
+            <input 
+              type="text" 
+              placeholder="Search for doctors..." 
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              onFocus={() => setIsSearchFocused(true)}
+              onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
+            />
+          </div>
+        </div>
+      </div>
+    </nav>
+  );
+}
+
+export default function DoctorsPage() {
   const { hospitalId } = useParams();
-  const hospital = hospitals.find(h => h.id === parseInt(hospitalId));
   const doctors = doctorsData[hospitalId] || [];
+  const hospital = hospitalData[hospitalId] || { name: "Unknown Hospital", banner: "/api/placeholder/1200/150" };
 
   return (
     <div className="doctors-page">
-      <motion.h1
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-      >
-        Doctors at {hospital ? hospital.name : 'Hospital'}
-      </motion.h1>
+      <Navigation />
+      <div className="hospital-banner" style={{ backgroundImage: `url(${hospital.banner})` }}>
+        <h1>{hospital.name}</h1>
+      </div>
       <div className="doctors-list">
         {doctors.map((doctor, index) => (
           <motion.div

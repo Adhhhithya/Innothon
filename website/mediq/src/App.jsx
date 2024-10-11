@@ -8,7 +8,7 @@ import MainLogo from './assets/Mediq-logo.png';
 import HospitalHomePage from './hospitalhomepage.jsx';
 import PatientBookings from './patientbookings.jsx';
 import DoctorProfile from './doctorprofile.jsx';
-
+import DoctorsPage from './doctorsList.jsx';
 const MainPage = () => {
   const navigate = useNavigate();
   
@@ -166,7 +166,8 @@ const App = () => {
         <Route path="/hospitalregister" element={<HospitalRegister />} />
         <Route path="/patientregister" element={<PatientRegister />} />
         <Route path="/patientbookings" element={<PatientBookings />} />
-        <Route path="/doctor/johndoe" element={<DoctorProfile />} /> 
+        <Route path="/doctor/johndoe" element={<DoctorProfile />} />
+        <Route path="/doctors/:hospitalId" element={<DoctorsPage />} />
       </Routes>
     </Router>
   );
