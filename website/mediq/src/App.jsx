@@ -9,11 +9,13 @@ import HospitalHomePage from './hospitalhomepage.jsx';
 import PatientBookings from './patientbookings.jsx';
 import DoctorProfile from './doctorprofile.jsx';
 import DoctorsPage from './doctorsList.jsx';
+
 const MainPage = () => {
   const navigate = useNavigate();
   
   return (
     <div className="main-page">
+      
       <div className="logo">
         <img src={MainLogo} alt="Mediq Logo" />
       </div>
